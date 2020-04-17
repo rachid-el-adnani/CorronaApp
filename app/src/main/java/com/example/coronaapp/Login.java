@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity {
         mCreateBtn = findViewById(R.id.createText);
         forgotTextLink = findViewById(R.id.forgotPassword);
 
+
         //trigger
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +115,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // extract the email and send reset link
-                        String mail = resetMail.getText().toString();
+                        String mail = resetMail.getText().toString().toLowerCase().trim();
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
