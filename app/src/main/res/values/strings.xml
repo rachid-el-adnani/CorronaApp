@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Corona Detector</string>
+    <string name="logout">Logout</string>
+    <string name="verify_now">Verify now</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="your_email_address">Your Email Address</string>
+    <string name="your_name">Your Name</string>
+    <string name="email_not_verfied">Email Not Verfied !</string>
+    <string name="email">Email</string>
+    <string name="generate_qr">Generate QR</string>
+    <string name="phone">Phone</string>
+    <string name="todoP">TODO</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_side_bar">SideBar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
