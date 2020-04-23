@@ -26,4 +26,30 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="drawerOpen">drawerOpen</string>
+    <string name="drawerClose">drawerClose</string>
+    <string name="profileCard">Profile</string>
+    <string name="mapCard">Map</string>
+    <string name="grid_layout">Grid Layout</string>
+    <string name="healthcard">My Health</string>
+    <string name="be_careful">Be Careful</string>
+    <string name="tips_advices">Tips/advices</string>
+    <string name="settings">Settings</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="search_text">Search...</string>
+    <string name="description">Some dummy data to test with</string>
+    <string name="featured_locations">All The Tips</string>
+    <string name="testing">some dummy data to test the description</string>
+    <string name="featured_locations_description">Scroll to the left to see more!</string>
+    <string name="police">Police</string>
+    <string name="hospital">Hospital</string>
+    <string name="more">More</string>
+    <string name="view_all">View All</string>
+    <string name="tipcard1">Tip Card 1</string>
+    <string name="tip_card_2">Tip Card 2</string>
+    <string name="tip_card_3">Tip Card 3</string>
+    <string name="profile">Profile</string>
+    <string name="my_health">My Health</string>
+    <string name="map">Map</string>
 </resources>

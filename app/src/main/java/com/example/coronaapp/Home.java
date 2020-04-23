@@ -89,6 +89,7 @@ public class Home extends AppCompatActivity {
                     }
                     qrgen.setVisibility(View.GONE);
                     Toast.makeText(Home.this,"QR generated!", Toast.LENGTH_SHORT ).show();
+                    imageView.setVisibility(View.VISIBLE);
                     imageView.setImageBitmap(bitmap);
 
                 } catch (Exception e) {
@@ -147,7 +148,9 @@ public class Home extends AppCompatActivity {
 
 
 
-
+    public void back(View view){
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    }
 
 
     //logging out
