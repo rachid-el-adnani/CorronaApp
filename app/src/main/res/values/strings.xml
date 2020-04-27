@@ -52,4 +52,9 @@
     <string name="profile">Profile</string>
     <string name="my_health">My Health</string>
     <string name="map">Map</string>
+    <string name="diagnosis">Diagnosis</string>
+    <string name="calling_the_police">calling the police</string>
+    <string name="calling_an_ambulance">calling an ambulance</string>
+    <string name="callpolice">Police</string>
+    <string name="ambulance">Ambulance</string>
 </resources>

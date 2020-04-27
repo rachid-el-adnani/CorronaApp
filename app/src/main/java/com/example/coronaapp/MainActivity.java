@@ -13,12 +13,17 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView PCard, MCard, HCard, CCard, TACard, LCard;
+    CardView DCard, PCard, MCard, HCard, CCard, TACard, LCard, PCall, ACall;
+    private FirebaseFirestore fStore;
+    private FirebaseAuth fAuth;
+    private String userId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //hooks
+        PCall = findViewById(R.id.policeCall);
+        ACall = findViewById(R.id.ambulanceCard);
+        ////////////////////////////////////////
+        DCard = findViewById(R.id.diagnosisCard);
         PCard  = findViewById(R.id.profileCard);
         MCard  = findViewById(R.id.mapCard);
         HCard  = findViewById(R.id.myhealthCard);
@@ -33,7 +42,16 @@ public class MainActivity extends AppCompatActivity {
         TACard = findViewById(R.id.tipsCard);
         LCard  = findViewById(R.id.logoutCard);
 
-        //profile trigger
+
+        //fire base
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        userId = fAuth.getCurrentUser().getUid();
+        final FirebaseUser user = fAuth.getCurrentUser();
+        
+        
+        //Profile trigger
         PCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,9 +60,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
     }
 
 
 
+    //logging out
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();//logout
+        startActivity(new Intent(getApplicationContext(),Login.class));
+        finish();
+    }
 
 }

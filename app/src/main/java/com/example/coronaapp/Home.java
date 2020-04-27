@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 public class Home extends AppCompatActivity {
 
     TextView fullName,email,phone,verifyMsg;
-    ImageView imageView, imageButton;
+    ImageView imageView;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
@@ -150,13 +150,8 @@ public class Home extends AppCompatActivity {
 
     public void back(View view){
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
-    }
-
-
-    //logging out
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();//logout
-        startActivity(new Intent(getApplicationContext(),Login.class));
         finish();
     }
+
+
 }
