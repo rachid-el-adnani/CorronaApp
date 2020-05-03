@@ -12,9 +12,7 @@ import android.widget.ImageView;
 
 public class Splashscreen extends AppCompatActivity {
 
-    //variables
-    private static int duration = 4000;
-    Animation topAnim, bottomAnim;
+    Animation anim;
     ImageView logo, slogan;
 
     @Override
@@ -28,14 +26,13 @@ public class Splashscreen extends AppCompatActivity {
         slogan = findViewById(R.id.slogan);
 
         //Animations
-        topAnim = AnimationUtils.loadAnimation(this, R.anim.animation);
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.animation);
+        anim = AnimationUtils.loadAnimation(this, R.anim.animation);
 
         //Set animation to elements
-        logo.setAnimation(topAnim);
-        slogan.setAnimation(bottomAnim);
+        slogan.setAnimation(anim);
 
         //Switching to the Registration screen
+        int duration = 5000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity {
 
         //if the user already have an account
         if (fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), Home.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
