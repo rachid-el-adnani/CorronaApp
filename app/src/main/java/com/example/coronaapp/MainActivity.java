@@ -5,12 +5,17 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,12 +78,38 @@ public class MainActivity extends AppCompatActivity {
                 Medics();
             }
         });
+    ///////////////////////////////////////////////////
+
+        //Diagnosis
+        DCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(getApplicationContext(), Diagnosis.class));
+            }
+        });
 
         //Profile trigger
         PCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Home.class));
+            }
+        });
+
+
+        //Health
+        HCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(getApplicationContext(), Health.class));
+            }
+        });
+
+        // Careful
+        CCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(getApplicationContext(), Careful.class));
             }
         });
 
@@ -91,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //Log out
+        LCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout(v);
+            }
+        });
 
     }
 
@@ -102,7 +140,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();//logout
         startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
+
+
     }
+
 
 
 

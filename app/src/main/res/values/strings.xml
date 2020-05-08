@@ -55,4 +55,13 @@
     <string name="tips_desc">Swipe to the left to see more precautions you can follow and apply!</string>
     <string name="wash_your_hands">Wash your hands</string>
     <string name="wash_desc">For at least 20 seconds each time you go outside.</string>
+    <string name="temperature">Temperature :</string>
+    <string name="are_you_tired">Are you tired :</string>
+    <string name="DryCaugh">Dry Cough :</string>
+    <string name="aches_and_pain">Aches and Pain</string>
+    <string name="breathing">Any breathing troubles :</string>
+    <string name="soar_throat">Soar throat :</string>
+    <string name="diarrhea">Diarrhea :</string>
+    <string name="submit">Submit</string>
+    <string name="ivalidTemp">Please enter a valid value</string>
 </resources>

@@ -29,6 +29,8 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.util.Objects;
+
 import javax.annotation.Nullable;
 
 public class Home extends AppCompatActivity {
@@ -61,7 +63,7 @@ public class Home extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        userId = fAuth.getCurrentUser().getUid();
+        userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
         final FirebaseUser user = fAuth.getCurrentUser();
 
         //mail verification
@@ -116,7 +118,7 @@ public class Home extends AppCompatActivity {
                     user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(Home.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Home.this, "Verification Email Has been Sent, check it out!", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -135,6 +137,7 @@ public class Home extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                assert documentSnapshot != null;
                 if(documentSnapshot.exists()){
                     phone.setText(documentSnapshot.getString("phone"));
                     fullName.setText(documentSnapshot.getString("fName"));

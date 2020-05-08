@@ -10,6 +10,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.google.firebase.firestore.util.AsyncQueue;
+
+import java.util.concurrent.Delayed;
+
 public class Splashscreen extends AppCompatActivity {
 
     Animation anim;
