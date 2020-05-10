@@ -8,11 +8,26 @@
     android:orientation="vertical"
     tools:context=".Tips">
 
+    <TextView
+        android:id="@+id/tipsCardtxt"
+        android:transitionName="titleTransition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/eb_garamond"
+        android:text="@string/tips_advices"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="35sp"
+        android:visibility="gone"
+        android:layout_marginTop="50sp"
+        android:layout_gravity="center"
+        android:textStyle="bold" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="500sp"
         android:layout_marginStart="15sp"
-        android:layout_marginTop="200sp">
+        android:layout_marginTop="125sp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tipscarousel"

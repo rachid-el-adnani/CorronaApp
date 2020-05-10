@@ -34,7 +34,7 @@
     <string name="grid_layout">Grid Layout</string>
     <string name="healthcard">My Health</string>
     <string name="be_careful">Be Careful</string>
-    <string name="tips_advices">Tips and Advices</string>
+    <string name="tips_advices">Advices</string>
     <string name="settings">Settings</string>
     <string name="dashboard">Dashboard</string>
     <string name="search_text">Search…</string>
@@ -50,7 +50,6 @@
     <string name="my_health">My Health</string>
     <string name="map">Map</string>
     <string name="diagnosis">Diagnosis</string>
-    <string name="callpolice">Police</string>
     <string name="ambulance">Ambulance</string>
     <string name="tips_desc">Swipe to the left to see more precautions you can follow and apply!</string>
     <string name="wash_your_hands">Wash your hands</string>
@@ -64,4 +63,26 @@
     <string name="diarrhea">Diarrhea :</string>
     <string name="submit">Submit</string>
     <string name="ivalidTemp">Please enter a valid value</string>
+
+    <string-array name="temp">
+        <item>Normal</item>
+        <item>Cold</item>
+        <item>Hot</item>
+    </string-array>
+
+    <string-array name="cough">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="breath">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="sour">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
 </resources>

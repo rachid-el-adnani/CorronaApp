@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register"
     tools:context=".Register">
 
     <EditText
@@ -19,13 +18,14 @@
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
+        android:textColor="#536DFE"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
 
     <EditText
         android:id="@+id/Email"
@@ -40,8 +40,8 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
+        android:textColor="#536DFE"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +60,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
+        android:textColor="#536DFE"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +80,8 @@
         android:hint="Phone"
         android:inputType="number|textPhonetic"
         android:padding="10dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
+        android:textColor="#536DFE"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,21 +109,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Already Registered ? Login Here"
-        android:textColor="#3F51B5"
+        android:textColor="#7C4DFF"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:fontFamily="@font/oswald"
+        android:text="New membre huh?"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createText"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.26" />
 
 

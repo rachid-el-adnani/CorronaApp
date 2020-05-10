@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -19,10 +20,12 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView MCall;
     private FirebaseAuth fAuth;
     private String userId;
+    TextView title;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         CCard = findViewById(R.id.carefulCard);
         TACard = findViewById(R.id.tipsCard);
         LCard = findViewById(R.id.logoutCard);
+        
+        title = findViewById(R.id.tipsCardtxt);
 
 
 
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         DCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(), Diagnosis.class));
+                startActivity(new Intent(getApplicationContext(), Diagnosis.class));
             }
         });
 
@@ -117,7 +123,12 @@ public class MainActivity extends AppCompatActivity {
         TACard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Tips.class));
+                Intent i = new Intent(MainActivity.this, Tips.class);
+
+                Pair[] pairs = new Pair[1];
+                pairs [0] = new Pair<View, String>(title, "titleTransition");
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                startActivity(i, activityOptions.toBundle());
             }
         });
 
