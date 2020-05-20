@@ -41,6 +41,8 @@ public class Home extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userId;
     Button resendCode, qrgen;
+    String state;
+    Global global;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -53,7 +55,9 @@ public class Home extends AppCompatActivity {
         fullName = findViewById(R.id.profileName);
         email    = findViewById(R.id.profileEmail);
 
-        //side bar trigger
+        //Getting the user's state
+        global = (Global) getApplicationContext();
+        state = global.getState();
 
         //QR code
         imageView = findViewById(R.id.qrCode);
@@ -81,7 +85,7 @@ public class Home extends AppCompatActivity {
                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
                 try {
                     //encoding data and setting dimensions
-                    BitMatrix bitMatrix = qrCodeWriter.encode(fullName.getText().toString(), BarcodeFormat.QR_CODE, 200, 200);
+                    BitMatrix bitMatrix = qrCodeWriter.encode(state, BarcodeFormat.QR_CODE, 200, 200);
                     Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
                     //setting pixalisation
                     for (int x = 0; x<200; x++){

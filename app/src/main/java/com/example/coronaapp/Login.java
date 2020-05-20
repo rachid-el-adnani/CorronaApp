@@ -103,11 +103,45 @@ public class Login extends AppCompatActivity {
         });
 
 
+        forgotTextLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText resetMail = new EditText(v.getContext());
+                final AlertDialog.Builder passReset = new AlertDialog.Builder(v.getContext());
+                passReset.setTitle("Reset Password");
+                passReset.setMessage("Enter your email to receive the reset ling");
+                passReset.setView(resetMail);
 
+                passReset.setPositiveButton("Send URL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Extract the mail
+                        String mail = resetMail.getText().toString().toLowerCase().trim();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(Login.this, "Reset link is sent to the provided email.", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Login.this, "Error " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
 
+                passReset.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                });
 
+                passReset.show();
 
+            }
+        });
 
 
 

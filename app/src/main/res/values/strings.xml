@@ -63,11 +63,17 @@
     <string name="diarrhea">Diarrhea :</string>
     <string name="submit">Submit</string>
     <string name="ivalidTemp">Please enter a valid value</string>
+    <string name="show_my_progress">Show My Progress</string>
+    <string name="call_a_doctor_now">Call a doctor NOW!</string>
+    <string name="it_s_better_to_check">You better call a doctor</string>
+    <string name="searching">Searching...</string>
 
     <string-array name="temp">
-        <item>Normal</item>
-        <item>Cold</item>
         <item>Hot</item>
+        <item>A little hot</item>
+        <item>Normal</item>
+        <item>A little cold</item>
+        <item>Cold</item>
     </string-array>
 
     <string-array name="cough">

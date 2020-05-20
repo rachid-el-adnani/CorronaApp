@@ -1,46 +1,40 @@
 package com.example.coronaapp;
 
+import android.Manifest;
+import android.app.ActivityOptions;
+import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Pair;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.Manifest;
-import android.app.ActivityOptions;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Pair;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Objects;
 
-import static java.security.AccessController.getContext;
+import static android.net.Uri.parse;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView DCard, PCard, MCard, HCard, CCard, TACard, LCard;
+    CardView DCard, PCard, MCard, CCard, TACard, LCard;
     private FirebaseFirestore fStore;
-    ImageView MCall;
+    ImageView MCall, scanner;
     private FirebaseAuth fAuth;
     private String userId;
     TextView title;
@@ -54,15 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
         //hooks
         MCall = findViewById(R.id.medicsCall);
+        scanner = findViewById(R.id.scanner);
         ////////////////////////////////////////
         DCard = findViewById(R.id.diagnosisCard);
         PCard = findViewById(R.id.profileCard);
         MCard = findViewById(R.id.mapCard);
-        HCard = findViewById(R.id.myhealthCard);
         CCard = findViewById(R.id.carefulCard);
         TACard = findViewById(R.id.tipsCard);
         LCard = findViewById(R.id.logoutCard);
-        
+
         title = findViewById(R.id.tipsCardtxt);
 
 
@@ -84,13 +78,24 @@ public class MainActivity extends AppCompatActivity {
                 Medics();
             }
         });
-    ///////////////////////////////////////////////////
+        //Scanner trigger
+        scanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, QrScanner.class);
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                startActivity(i, activityOptions.toBundle());
+            }
+        });
+        ///////////////////////////////////////////////////
 
         //Diagnosis
         DCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Diagnosis.class));
+                Intent i = new Intent(MainActivity.this, Diagnosis.class);
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                startActivity(i, activityOptions.toBundle());
             }
         });
 
@@ -98,26 +103,22 @@ public class MainActivity extends AppCompatActivity {
         PCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Home.class));
+                Intent i = new Intent(getApplicationContext(), Home.class);
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                startActivity(i, activityOptions.toBundle());
             }
         });
 
 
-        //Health
-        HCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(), Health.class));
-            }
-        });
-
-        // Careful
+       /* // Careful
         CCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(), Careful.class));
+                Intent i = new Intent(getApplicationContext(), Careful.class);
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                startActivity(i, activityOptions.toBundle());
             }
-        });
+        });*/
 
         //Tips and Advices
         TACard.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
             String dial = "tel:"+police_num;
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            startActivity(new Intent(Intent.ACTION_CALL, parse(dial)));
 
         }
 

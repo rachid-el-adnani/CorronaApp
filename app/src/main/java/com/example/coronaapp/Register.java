@@ -39,7 +39,6 @@ public class Register extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
-    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,7 @@ public class Register extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.createText);
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar2);
 
         //if the user already have an account
         if (fAuth.getCurrentUser() != null){
@@ -69,6 +68,9 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //making the progress bar visible (so that the user won't think th UI is frozen in case it took some time)
+                progressBar.setVisibility(View.VISIBLE);
+
                 //getting data
                 final String fullName = mFullName.getText().toString();
                 final String email = mEmail.getText().toString().trim();
@@ -78,31 +80,35 @@ public class Register extends AppCompatActivity {
                 //testing if the data is null or not
                 if (TextUtils.isEmpty(fullName)) {
                     mFullName.setError("This field is required!");
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
                 if (TextUtils.isEmpty(phone)) {
                     mPhone.setError("This field is required!");
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("This field is required!");
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
                     mPassword.setError("This field is required!");
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
                 if (password.length() < 6) {
                     mPassword.setError("At least 6 characters");
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
-                //making the progress bar visible (so that the user won't think th UI is frozen in case it took some time)
-                progressBar.setVisibility(View.VISIBLE);
+
 
                 //submit data in Firebase
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -127,11 +133,10 @@ public class Register extends AppCompatActivity {
                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
-                            user = new User();
-                            user.setPhone(phone);
-                            user.setfName(fullName);
-                            user.setEmail(email);
-                            user.setTemp(null);
+                            HashMap<String, Object> user = new HashMap<>();
+                            user.put("fName", fullName);
+                            user.put("email", email);
+                            user.put("phone", phone);
 
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

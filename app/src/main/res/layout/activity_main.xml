@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:weightSum="10"
+        android:weightSum="9"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="UselessParent">
@@ -26,22 +26,19 @@
                 android:id="@+id/medicsCall"
                 android:layout_width="80sp"
                 android:layout_height="80sp"
-                android:layout_marginStart="60sp"
+                android:layout_marginStart="90sp"
                 android:layout_marginTop="43sp"
                 android:layout_marginBottom="22sp"
                 android:src="@drawable/ic_local_hospital_black_24dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5sp"
-                android:layout_marginTop="63sp"
+            <ImageView
+                android:id="@+id/scanner"
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_marginStart="60sp"
+                android:layout_marginTop="45sp"
                 android:layout_marginBottom="22sp"
-                android:fontFamily="@font/eb_garamond"
-                android:text="@string/ambulance"
-                android:textColor="#1C1C20"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                app:srcCompat="@drawable/scanner" />
 
         </LinearLayout>
 
@@ -139,46 +136,6 @@
 
 
 
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/myhealthCard"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/colorPrimary"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40sp"
-                        android:layout_height="40sp"
-                        android:layout_marginStart="10sp"
-                        android:src="@drawable/ic_healt"/>
-
-                    <TextView
-                        android:id="@+id/myhealthCardtxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/eb_garamond"
-                        android:text="@string/my_health"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
 

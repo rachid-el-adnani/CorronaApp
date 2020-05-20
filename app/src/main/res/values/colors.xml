@@ -11,4 +11,5 @@
     <color name="home_background">#f2f5f8</color>
     <color name="banner_background">#f1e9ce</color>
     <color name="banner_background_light">#56f1e9ce</color>
+    <color name="white">#fff</color>
 </resources>

@@ -56,14 +56,15 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/coughTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="30sp"
             android:fontFamily="@font/eb_garamond"
             android:text="Cough :"
             android:textColor="#fff"
             android:textSize="24sp"
-            android:layout_marginStart="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.114"
@@ -90,14 +91,15 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/brtTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="30sp"
             android:fontFamily="@font/eb_garamond"
             android:text="Breathlessness :"
             android:textColor="#fff"
             android:textSize="24sp"
-            android:layout_marginStart="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.114"
@@ -124,14 +126,15 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/sourTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="30sp"
             android:fontFamily="@font/eb_garamond"
             android:text="Sore throat  :"
             android:textColor="#fff"
             android:textSize="24sp"
-            android:layout_marginStart="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.114"
@@ -167,7 +170,20 @@
             android:textColor="#fff"
             android:background="@color/colorPrimary"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="250sp"/>
+            android:layout_marginStart="250sp"
+            />
+
+        <Button
+            android:id="@+id/show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="-300sp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/eb_garamond"
+            android:text="@string/show_my_progress"
+            android:textColor="#fff"
+            android:textSize="18sp" />
 
 
     </LinearLayout>
