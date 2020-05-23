@@ -1,5 +1,6 @@
 package com.example.coronaapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -26,6 +27,16 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,6 +57,9 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
     ArrayAdapter<CharSequence> fAdapter, cAdapter, bAdapter, sAdapter;
     DataBaseHelper DB;
     Dialog dialog;
+    FirebaseFirestore fStore;
+    Global global;
+
 
 
     @Override
@@ -65,6 +79,11 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
         submit = findViewById(R.id.submit);
         DB = new DataBaseHelper(this);
         dialog = new Dialog(this);
+
+        //////////////////////////////////////////
+        Intent intent = getIntent();
+        final String userID = intent.getStringExtra("CURRENT_USER");
+        /////////////////////////////////////////
 
 
 
@@ -127,12 +146,6 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
 
 
 
-
-
-
-
-
-
         //Storing Fever state in database to use it in the chart
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,12 +188,27 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
                     }
                 }, timeToWait);
 
-                //Creating a global var
-                Global global = (Global) getApplicationContext();
                 //Making the test
+                FirebaseUser CUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (FValue.toLowerCase().equals("hot") && BValue.toLowerCase().equals("yes")){
-                    //Setting the the state in the global var
-                    global.setState("Sick");
+                    //Updating 'IsSick' var in the DB
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    assert CUser != null;
+                    DocumentReference documentReference = db.collection("users")
+                            .document(CUser.getUid());
+                    documentReference.update(
+                      "sick",true
+                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
                     //Showing danger pop up
                     dialog.setContentView(R.layout.danger_pop_up);
                     TextView txtClose = dialog.findViewById(R.id.txtclose);
@@ -197,8 +225,6 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
                     dialog.show();
 
                 }else if ( FValue.toLowerCase().equals("normal") && BValue.toLowerCase().equals("no") && CValue.toLowerCase().equals("no") && SValue.toLowerCase().equals("no")){
-                    //Setting the the state in the global var
-                    global.setState("Safe");
                     //Showing warning pop up
                     dialog.setContentView(R.layout.safe_pop_up);
                     TextView txtClose = dialog.findViewById(R.id.txtclose);
@@ -214,8 +240,6 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
                     dialog.show();
 
                 }else
-                    //Setting the the state in the global var
-                    global.setState("Better check");
                     //Showing warning pop up
                     dialog.setContentView(R.layout.warning_pop_up);
                     TextView txtClose = dialog.findViewById(R.id.txtclose);
@@ -300,6 +324,8 @@ public class Diagnosis extends AppCompatActivity implements AdapterView.OnItemSe
 
 
     }
+
+
 
     //The pop-up
     public void showMessage(String title, String msg){

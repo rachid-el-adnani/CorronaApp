@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.coronaapp">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.CALL_PHONE"
-        tools:ignore="ManifestOrder"
-        />
-    <uses-permission android:name="android.permission.CAMERA"/>
+        tools:ignore="ManifestOrder" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".Global"
@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QrScanner"></activity>
+        <activity android:name=".MapsActivity"></activity>
+        <activity android:name=".QrScanner" />
         <activity android:name=".Health" />
         <activity android:name=".Diagnosis" />
         <activity android:name=".Tips" />
@@ -42,6 +43,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB2v5NMCvFVfoSigqv3OFjqsY5Swa93wUQ" />
 
         <receiver android:name=".ReminderBrodcast" />
     </application>

@@ -7,30 +7,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class User {
 
-    private String temp, fName, email, phone;
-    private FirebaseUser cUser;
+    private String fName, email, phone;
+    private boolean IsSick;
 
     public User() {}
 
-    public User(String temp, FirebaseUser cUser) {
-        this.temp = temp;
-        this.cUser = cUser;
+    public boolean isSick() {
+        return IsSick;
     }
 
-    public String getTemp() {
-        return temp;
-    }
-
-    public void setTemp(String temp) {
-        this.temp = temp;
-    }
-
-    public FirebaseUser getcUser() {
-        return cUser;
-    }
-
-    public void setcUser(FirebaseUser cUser) {
-        this.cUser = cUser;
+    public void setSick(boolean sick) {
+        IsSick = sick;
     }
 
     public String getfName() {

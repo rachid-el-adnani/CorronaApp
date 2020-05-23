@@ -3,13 +3,13 @@ package com.example.coronaapp;
 import android.app.Application;
 
 public class Global extends Application {
-    private String state;
+    private String ID;
 
-    public String getState() {
-        return state;
+    public String getID() {
+        return ID;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

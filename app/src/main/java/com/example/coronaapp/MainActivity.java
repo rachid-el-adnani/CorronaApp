@@ -28,6 +28,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Objects;
 
+import io.grpc.util.ForwardingLoadBalancer;
+
 import static android.net.Uri.parse;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView MCall, scanner;
     private FirebaseAuth fAuth;
     private String userId;
+    Global ID;
     TextView title;
 
 
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
 
         userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-        final FirebaseUser user = fAuth.getCurrentUser();
+
 
 
 
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, Diagnosis.class);
+                i.putExtra("CURRENT_USER", fAuth.getCurrentUser().getUid());
                 ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
                 startActivity(i, activityOptions.toBundle());
             }
@@ -109,6 +113,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        MCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                startActivity(i, activityOptions.toBundle());
+            }
+        });
 
        /* // Careful
         CCard.setOnClickListener(new View.OnClickListener() {

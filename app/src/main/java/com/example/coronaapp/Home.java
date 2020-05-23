@@ -16,8 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,10 +27,16 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.Nullable;
@@ -41,7 +49,9 @@ public class Home extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userId;
     Button resendCode, qrgen;
-    String state;
+    boolean state;
+    String userData;
+    Map<String, Object> userDataExtractor;
     Global global;
 
     @SuppressLint("WrongViewCast")
@@ -55,9 +65,7 @@ public class Home extends AppCompatActivity {
         fullName = findViewById(R.id.profileName);
         email    = findViewById(R.id.profileEmail);
 
-        //Getting the user's state
-        global = (Global) getApplicationContext();
-        state = global.getState();
+
 
         //QR code
         imageView = findViewById(R.id.qrCode);
@@ -73,38 +81,6 @@ public class Home extends AppCompatActivity {
         //mail verification
         resendCode = findViewById(R.id.resendCode);
         verifyMsg = findViewById(R.id.verifyMsg);
-
-
-
-
-
-        //qr code generator
-        qrgen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                QRCodeWriter qrCodeWriter = new QRCodeWriter();
-                try {
-                    //encoding data and setting dimensions
-                    BitMatrix bitMatrix = qrCodeWriter.encode(state, BarcodeFormat.QR_CODE, 200, 200);
-                    Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
-                    //setting pixalisation
-                    for (int x = 0; x<200; x++){
-                        for (int y=0; y<200; y++){
-                            bitmap.setPixel(x,y,bitMatrix.get(x,y)? Color.BLACK : Color.WHITE);
-                        }
-                    }
-                    qrgen.setVisibility(View.GONE);
-                    Toast.makeText(Home.this,"QR generated!", Toast.LENGTH_SHORT ).show();
-                    imageView.setVisibility(View.VISIBLE);
-                    imageView.setImageBitmap(bitmap);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
 
 
 
@@ -151,6 +127,55 @@ public class Home extends AppCompatActivity {
                 }
             }
         });
+
+
+        fStore.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                userDataExtractor = document.getData();
+                                userData = "Name :" + userDataExtractor.get("fName") + "\n" +
+                                        "Phone : " + userDataExtractor.get("phone") + "\n" +
+                                        "Is Sick : " + userDataExtractor.get("sick");
+                            }
+                        } else {
+                            userData = "Nothing";
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+
+        //qr code generator
+        qrgen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                QRCodeWriter qrCodeWriter = new QRCodeWriter();
+                try {
+                    //encoding data and setting dimensions
+                    BitMatrix bitMatrix = qrCodeWriter.encode(userData, BarcodeFormat.QR_CODE, 200, 200);
+                    Bitmap bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
+                    //setting pixalisation
+                    for (int x = 0; x<200; x++){
+                        for (int y=0; y<200; y++){
+                            bitmap.setPixel(x,y,bitMatrix.get(x,y)? Color.BLACK : Color.WHITE);
+                        }
+                    }
+                    qrgen.setVisibility(View.GONE);
+                    Toast.makeText(Home.this,"QR generated!", Toast.LENGTH_SHORT ).show();
+                    imageView.setVisibility(View.VISIBLE);
+                    imageView.setImageBitmap(bitmap);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
 
 
     }
