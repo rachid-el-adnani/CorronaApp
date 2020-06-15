@@ -67,6 +67,8 @@
     <string name="call_a_doctor_now">Call a doctor NOW!</string>
     <string name="it_s_better_to_check">You better call a doctor</string>
     <string name="searching">Searching...</string>
+    <string name="call_ambulance">Call Ambulance</string>
+    <string name="scann_a_code">Scann A Code</string>
 
     <string-array name="temp">
         <item>Hot</item>

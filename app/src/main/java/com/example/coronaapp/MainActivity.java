@@ -34,9 +34,8 @@ import static android.net.Uri.parse;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView DCard, PCard, MCard, CCard, TACard, LCard;
+    CardView DCard, PCard, MCard, CCard, TACard, LCard, MCall, scanner;
     private FirebaseFirestore fStore;
-    ImageView MCall, scanner;
     private FirebaseAuth fAuth;
     private String userId;
     Global ID;

@@ -179,21 +179,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.604" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:background="@color/colorPrimary"
-        android:fontFamily="@font/baloo"
-        android:onClick="back"
-        android:text="Back"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/qrCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
